@@ -14,19 +14,10 @@ public class Inicio {
        Boleto boleto1 = machine.getBoleto1();
        Boleto boleto2 = machine.getBoleto2();
        Boleto boleto3 = machine.getBoleto3();
-
-       
-        
-       
-       int number = asatpramad.nextInt(15000)+1;
-       int a = asatpramad.nextInt(15000)+1;
-       int b = asatpramad.nextInt(15000)+1;
-      
-       user.setTicket(number);
        
        
 
-       if ((user.getTicket() > a && user.getTicket() < b) || (user. getTicket() > b && user.getTicket() < a)) {
+       
         String option = "0";
         while(!option.equals("6")){
         System.out.println("What action do you wish to perform?" + "\n");
@@ -52,17 +43,24 @@ public class Inicio {
                 user.setEmail(email1);
                 break;
             case "2":
+                int number = asatpramad.nextInt(15000)+1;
+                int a = asatpramad.nextInt(15000)+1;
+                int b = asatpramad.nextInt(15000)+1;
+      
+                user.setTicket(number);
+                if ((user.getTicket() > a && user.getTicket() < b) || (user. getTicket() > b && user.getTicket() < a)) {
                     System.out.println("How many tickets do you wish to buy?");
                      int amount = keyboard.nextInt();
                      keyboard.nextLine();
                      if (amount < 21) {
-                    System.out.println("Successfully bought the tickets!");
+                    
                      int i = asatpramad.nextInt(3)+1;
                         switch(i) {
                             case 1: 
                                 int mount1 = boleto1.getCc() + amount;
                                 if (mount1 < 21 && (boleto1.getPrecio()*mount1)<=user.getPresupuesto()){
                                     boleto1.setCc(mount1);
+                                    System.out.println("Successfully bought the tickets!");
                              }
                                 else {System.out.println("Sorry, we are unable to complete the purchase. ");}
                                 break;
@@ -70,6 +68,7 @@ public class Inicio {
                                 int mount2 = boleto2.getCc() + amount;
                                 if (mount2 < 21 && (boleto2.getPrecio()*mount2)<=user.getPresupuesto()){
                                     boleto2.setCc(mount2);
+                                    System.out.println("Successfully bought the tickets!");
                                 }
                                 else {System.out.println("Sorry, we are unable to complete the purchase. ");}
                                 break;
@@ -77,45 +76,72 @@ public class Inicio {
                                 int mount3 = boleto3.getCc() + amount;
                                 if (mount3 < 21 && (boleto3.getPrecio()*mount3)<=user.getPresupuesto()){
                                     boleto3.setCc(mount3);
+                                    System.out.println("Successfully bought the tickets!");
                                 }
                                 else {System.out.println("Sorry, we are unable to complete the purchase. ");}
                                 break;
                             default: 
                                 System.out.println("I'm trully unaware as to how you got this message");}}
-                     else {System.out.println("The amount of tickets exceeds the maximum allowed.");}
-                     break;
-                case "3":
+                     else {System.out.println("The amount of tickets exceeds the maximum allowed.");} }
+                
+                else{ System.out.println("Sorry, you're not eligible.");}
+                        break;
+            case "3":
                     System.out.println("The amount of seats taken is: "+ "\n");
                     int avlibt = boleto1.getCc() + boleto2.getCc() + boleto3.getCc();
                     System.out.println(avlibt);
+                    System.out.println("The amount of seats available is:" + "\n");
+                    System.out.println(60-avlibt);
                     break;
-                case "4":
-                    System.out.println("The amount of seats taken in tier number 1 is: "+ "\n");
-                    System.out.println(boleto1.getCc()+ "\n");
-                    System.out.println("The amount of seats taken in tier number 2 is: "+ "\n");
-                    System.out.println(boleto2.getCc()+ "\n");
-                    System.out.println("The amount of seats taken in tier number 3 is: "+ "\n");
-                    System.out.println(boleto3.getCc()+ "\n");
+            case "4":
+                 System.out.println("What availability do you wish to inspect?" + "\n");
+                    System.out.println("1 - Tier 1"+ "\n");
+                    System.out.println("2 - Tier 2"+ "\n");
+                    System.out.println("3 - Tier 3"+ "\n");
+                    String opt = keyboard.nextLine();
+                    switch(opt){
+                        case "1":
+                            System.out.println("The amount of seats taken in tier 1 is: "+ "\n");
+                                System.out.println(boleto1.getCc()+ "\n");
+                            System.out.println("The amount of seats available in tier 1 is: "+ "\n");
+                                System.out.println((20 - boleto1.getCc())+ "\n");
+                                break;
+                        case "2":
+                            System.out.println("The amount of seats taken in tier 2 is: "+ "\n");
+                                System.out.println(boleto2.getCc()+ "\n");
+                            System.out.println("The amount of seats available in tier 2 is: "+ "\n");
+                                System.out.println((20 - boleto2.getCc())+ "\n");
+                                break;
+                        case "3":
+                            System.out.println("The amount of seats taken in tier 3 is: "+ "\n");
+                                System.out.println(boleto3.getCc()+ "\n");
+                            System.out.println("The amount of seats available in tier 3 is: "+ "\n");
+                                System.out.println((20 - boleto3.getCc())+ "\n");
+                                break;
+                        default:
+                            System.out.println("Invalid Input.");
+                        break; }
+                
                     break;
 
-                case "5":
+            case "5":
                     machine.setPtl1(boleto1.getCc()*boleto1.getPrecio());
                     machine.setPtl2(boleto2.getCc()*boleto2.getPrecio());
                     machine.setPtl3(boleto3.getCc()*boleto3.getPrecio());
                     System.out.println(machine.getPtl1()+machine.getPtl2()+machine.getPtl3());
-                case "6":
+                    break;
+            case "6":
                     System.out.println("Goodbye");
                 }
 
                 
             }
         
+        
         }
-        else{
-            System.out.println("Sorry, you're not eligible.");
-        }
-       }
     }
+       
+    
         
 
     
