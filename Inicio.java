@@ -61,6 +61,7 @@ public class Inicio {
                                 if (mount1 < 21 && (boleto1.getPrecio()*mount1)<=user.getPresupuesto()){
                                     boleto1.setCc(mount1);
                                     System.out.println("Successfully bought the tickets!");
+                                    user.setPresupuesto(user.getPresupuesto()-boleto1.getPrecio()*mount1);
                              }
                                 else {System.out.println("Sorry, we are unable to complete the purchase. ");}
                                 break;
@@ -69,6 +70,7 @@ public class Inicio {
                                 if (mount2 < 21 && (boleto2.getPrecio()*mount2)<=user.getPresupuesto()){
                                     boleto2.setCc(mount2);
                                     System.out.println("Successfully bought the tickets!");
+                                    user.setPresupuesto(user.getPresupuesto()-boleto2.getPrecio()*mount2);
                                 }
                                 else {System.out.println("Sorry, we are unable to complete the purchase. ");}
                                 break;
@@ -77,6 +79,7 @@ public class Inicio {
                                 if (mount3 < 21 && (boleto3.getPrecio()*mount3)<=user.getPresupuesto()){
                                     boleto3.setCc(mount3);
                                     System.out.println("Successfully bought the tickets!");
+                                    user.setPresupuesto(user.getPresupuesto()-boleto3.getPrecio()*mount3);
                                 }
                                 else {System.out.println("Sorry, we are unable to complete the purchase. ");}
                                 break;
